@@ -1,0 +1,24 @@
+sudo: required
+services:
+    - docker
+
+before_install:
+    - docker build -t candamir/react-test -f ./client/Dockerclient.dev ./client
+
+
+script:
+    - docker run candamir/react-test npm test -- --coverage
+
+
+after_success:
+    - docker build -t candamir/multi-client ./client
+    - docker build -t candamir/multi-nginx  ./nginx
+    - docker build -t candamir/multi-server ./server
+    - docker build -t candamir/multi-worker ./worker
+    # Log in to the docker CLI
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+    # Take those images and push them to docker hub
+    - docker push candamir/multi-client
+    - docker push candamir/multi-nginx
+    - docker push candamir/multi-server
+    - docker push candamir/multi-worker
