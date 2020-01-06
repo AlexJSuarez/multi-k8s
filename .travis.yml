@@ -22,3 +22,16 @@ after_success:
     - docker push candamir/multi-nginx
     - docker push candamir/multi-server
     - docker push candamir/multi-worker
+
+deploy:
+    edge: true
+    provider: elasticbeanstalk
+    region: us-east-2
+    app: multi-docker
+    env: MultiDocker-env
+    bucket_name: arn:aws:s3:::elasticbeanstalk-us-east-2-635032078900
+    bucket_path: docker-multi
+    on:
+        branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
