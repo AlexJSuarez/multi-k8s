@@ -18,7 +18,7 @@
         {
             "name": "worker",
             "image": "candamir/multi-worker",
-            "hostname": "woker",
+            "hostname": "worker",
             "essential": false,
             "memory": 128
         },
