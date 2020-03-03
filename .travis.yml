@@ -7,7 +7,7 @@ before_install:
 
 
 script:
-    - docker run -e CI=true candamir/react-test npm test -- -- coverage
+    - docker run -e CI=true candamir/react-test npm test -- --coverage
 
 
 after_success:
