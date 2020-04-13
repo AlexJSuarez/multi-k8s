@@ -13,8 +13,8 @@ spec:
         - www.fediam.com
     acme:
         config:
-            - http01:
-                ingressClass: nginx
+          - http01:
+              ingressClass: nginx
             domains:
-                - fediam.com
-                - www.fediam.com
+              - fediam.com
+              - www.fediam.com
