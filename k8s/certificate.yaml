@@ -1,0 +1,20 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+    name: fediam.com-tls
+spec:
+    secretName: fediam.com
+    issuerRef:
+        name: letsencrypt-prod
+        kind: ClusterIssuer
+    commonName: fediam.com
+    dnsNames:
+        - fediam.com
+        - www.fediam.com
+    acme:
+        config:
+            - http01:
+                ingressClass: nginx
+            domains:
+                - fediam.com
+                - www.fediam.com
